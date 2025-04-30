@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Visor de Proyectos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Proyectos Registrados</h1>
+
+    <div class="selector-contenedor">
+      <label for="selectorProyecto">Selecciona un proyecto:</label>
+      <select id="selectorProyecto">
+        <option disabled selected>-- Selecciona un proyecto --</option>
+      </select>
+    </div>
+
+    <div id="contenidoProyecto" class="proyecto-info">
+      <!-- Aquí se renderiza todo desde el JS -->
+    </div>
+  </div>
+
+  <script src="/config/config.js"></script>
+  <script src="/config/config2.js"></script>
+  <script src="menu.js"></script>
+</body>
+</html>

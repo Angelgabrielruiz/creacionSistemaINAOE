@@ -1,0 +1,163 @@
+/* Generales */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f0f4f8;
+  color: #333;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2c3e50;
+}
+
+select {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: 0.3s;
+}
+
+select:hover,
+select:focus {
+  border-color: #3498db;
+}
+
+/* Tarjeta principal */
+.card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  padding: 25px;
+  margin-top: 20px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+}
+
+.section {
+  margin-top: 25px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 15px;
+  color: #666;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+ul li {
+  margin-bottom: 6px;
+}
+
+/* Barra de Progreso */
+.progress-wrapper {
+  margin: 15px 0;
+}
+
+.progress-bar-bg {
+  background-color: #e6ecf1;
+  border-radius: 30px;
+  overflow: hidden;
+  height: 28px;
+  width: 100%;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  text-align: center;
+  line-height: 28px;
+  font-weight: 600;
+  transition: width 0.4s ease;
+  color: white;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.progress-bar-fill.rojo {
+  background-color: #e74c3c;
+}
+
+.progress-bar-fill.amarillo {
+  background-color: #f39c12;
+  color: #fff;
+}
+
+.progress-bar-fill.verde {
+  background-color: #2ecc71;
+}
+
+/* Tablas */
+.estado-table,
+.gantt-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.estado-table th,
+.estado-table td,
+.gantt-table th,
+.gantt-table td {
+  padding: 12px 10px;
+  border: 1px solid #e0e0e0;
+  text-align: left;
+  transition: background-color 0.3s ease;
+}
+
+.estado-table th,
+.gantt-table th {
+  background-color: #ecf0f1;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.estado-table tbody tr:hover,
+.gantt-table tbody tr:hover {
+  background-color: #f9fbfc;
+}
+
+.estado-table td,
+.gantt-table td {
+  color: #34495e;
+}
+
+/* Imagen del diagrama */
+.section img {
+  max-width: 100%;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* Estilo responsivo para móviles */
+@media (max-width: 600px) {
+  .info-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .estado-table,
+  .gantt-table {
+    font-size: 13px;
+  }
+}

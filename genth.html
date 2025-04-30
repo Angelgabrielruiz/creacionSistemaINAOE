@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <button id="regresar" onclick="location.href= 'menu.html'">Regresar</button>
+  <title>Diagrama de Gantt</title>
+
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="/config/config.js"></script>
+  <script src="/config/config2.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+    select {
+      padding: 5px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Proyectos - Diagrama de Gantt</h1>
+  <label for="proyecto">Selecciona un proyecto:</label>
+  <select id="proyecto"></select>
+
+  <div id="gantt_chart" style="width: 100%; height: 600px;"></div>
+
+  <script>
+    google.charts.load("current", { packages: ["gantt"] });
+    google.charts.setOnLoadCallback(init);
+
+    function init() {
+      const selector = document.getElementById("proyecto");
+
+      window.config.proyectos.forEach((p, i) => {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = p.nombre;
+        selector.appendChild(option);
+      });
+
+      selector.addEventListener("change", () => {
+        const index = selector.value;
+        drawChart(window.config.proyectos[index]);
+      });
+
+      // Mostrar el primero por defecto
+      drawChart(window.config.proyectos[0]);
+    }
+
+    function drawChart(proyecto) {
+      const data = new google.visualization.DataTable();
+      data.addColumn("string", "ID");
+      data.addColumn("string", "Nombre");
+      data.addColumn("string", "Recurso");
+      data.addColumn("date", "Inicio");
+      data.addColumn("date", "Fin");
+      data.addColumn("number", "Duración");
+      data.addColumn("number", "Progreso");
+      data.addColumn("string", "Dependencias");
+
+      const fechas = proyecto.tareas.map(t => ({
+        inicio: new Date(t.fechaInicio),
+        fin: new Date(t.fechaFin),
+      }));
+
+      const fechaInicioMin = new Date(Math.min(...fechas.map(f => f.inicio)));
+      const fechaFinMax = new Date(Math.max(...fechas.map(f => f.fin)));
+
+      data.addRow([
+        "PROY-" + proyecto.nombre,
+        proyecto.nombre,
+        null,
+        fechaInicioMin,
+        fechaFinMax,
+        null,
+        proyecto.avance,
+        null
+      ]);
+
+      proyecto.tareas.forEach((tarea) => {
+        data.addRow([
+          "T" + tarea.id,
+          tarea.nombre,
+          tarea.responsable,
+          new Date(tarea.fechaInicio),
+          new Date(tarea.fechaFin),
+          null,
+          tarea.avance || 0,
+          "PROY-" + proyecto.nombre
+        ]);
+      });
+
+      const chart = new google.visualization.Gantt(document.getElementById("gantt_chart"));
+      chart.draw(data);
+    }
+  </script>
+</body>
+</html>
