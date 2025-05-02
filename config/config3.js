@@ -5,8 +5,8 @@ window.config.proyectos.push({
   institucion: "Univercidad politecnica de chiapas",
   fechaReporte: "2025-04-29",
   descripcionGeneral: "El Sistema de Continuidad de Beca de Posgrado tiene como objetivo registrar y validar mensualmente la situación académica de los estudiantes becarios del INAOE, cumpliendo con los lineamientos establecidos por la SECIHTI.",
-  avance: 40,
-  flujoImagen: "/public/flujo.webp",
+  avance: 100,
+  flujoImagen: "/public/diagrama.webp",
   estadoGeneral: {
     fase: "Producción",
     version: "2.3",
@@ -46,6 +46,13 @@ window.config.proyectos.push({
       fechaFin: "2025-05-03",
       avance: 40
     },
-  
+    {
+      id: 2,
+      nombre: "Implementar backend",
+      responsable: "Luis",
+      fechaInicio: "2025-05-04",
+      fechaFin: "2025-05-10",
+      avance: 60
+    }
   ]
 });

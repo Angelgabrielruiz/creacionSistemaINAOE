@@ -2,12 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <button id="regresar" onclick="location.href= 'menu.html'">Regresar</button>
   <title>Diagrama de Gantt</title>
 
   <script src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="/config/config.js"></script>
   <script src="/config/config2.js"></script>
+<script src="/config/config3.js"></script>
+  <script src="/config/config4.js"></script>
   <style>
     body {
       font-family: sans-serif;
@@ -17,17 +18,23 @@
       padding: 5px;
       margin-bottom: 20px;
     }
+    #regresar {
+      margin-bottom: 10px;
+      padding: 6px 12px;
+    }
   </style>
 </head>
 <body>
-  <h1>Proyectos - Diagrama de Gantt</h1>
+  <button id="regresar" onclick="location.href='menu.html'">Regresar</button>
+  <h1>Calendario - Diagrama de Gantt</h1>
   <label for="proyecto">Selecciona un proyecto:</label>
   <select id="proyecto"></select>
 
   <div id="gantt_chart" style="width: 100%; height: 600px;"></div>
 
   <script>
-    google.charts.load("current", { packages: ["gantt"] });
+    // Cargar con idioma español
+    google.charts.load("current", { packages: ["gantt"], language: "es" });
     google.charts.setOnLoadCallback(init);
 
     function init() {
@@ -45,8 +52,16 @@
         drawChart(window.config.proyectos[index]);
       });
 
-      // Mostrar el primero por defecto
-      drawChart(window.config.proyectos[0]);
+      const params = new URLSearchParams(window.location.search);
+      const index = parseInt(params.get("proyecto"));
+
+      if (!isNaN(index) && window.config.proyectos[index]) {
+        selector.value = index;
+        drawChart(window.config.proyectos[index]);
+      } else {
+        selector.value = 0;
+        drawChart(window.config.proyectos[0]);
+      }
     }
 
     function drawChart(proyecto) {
@@ -83,17 +98,31 @@
         data.addRow([
           "T" + tarea.id,
           tarea.nombre,
-          tarea.responsable,
+          tarea.responsable || "",
           new Date(tarea.fechaInicio),
           new Date(tarea.fechaFin),
           null,
           tarea.avance || 0,
-          "PROY-" + proyecto.nombre
+          null
         ]);
       });
 
       const chart = new google.visualization.Gantt(document.getElementById("gantt_chart"));
-      chart.draw(data);
+
+      const options = {
+        height: 400 + proyecto.tareas.length * 30,
+        gantt: {
+          trackHeight: 30,
+          labelStyle: {
+            fontName: "sans-serif",
+            fontSize: 14,
+            color: "#000"
+          },
+          percentEnabled: true // ✔️ Muestra barra de avance
+        }
+      };
+
+      chart.draw(data, options);
     }
   </script>
 </body>

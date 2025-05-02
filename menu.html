@@ -14,6 +14,7 @@
       <select id="selectorProyecto">
         <option disabled selected>-- Selecciona un proyecto --</option>
       </select>
+      <button id="gantt" onclick="irAGantt()">Diagrama de Gantt</button>
     </div>
 
     <div id="contenidoProyecto" class="proyecto-info">
@@ -23,6 +24,20 @@
 
   <script src="/config/config.js"></script>
   <script src="/config/config2.js"></script>
+  <script src="/config/config3.js"></script>
+  <script src="/config/config4.js"></script>
   <script src="menu.js"></script>
+
+  <script>
+    function irAGantt() {
+      const selector = document.getElementById("selectorProyecto");
+      const index = selector.selectedIndex - 1; // Restamos 1 por la opción por defecto
+      if (index >= 0) {
+        location.href = `genth.html?proyecto=${index}`;
+      } else {
+        alert("Selecciona un proyecto primero.");
+      }
+    }
+  </script>
 </body>
 </html>

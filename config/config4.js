@@ -1,12 +1,12 @@
 window.config = window.config || { proyectos: [] };
 
 window.config.proyectos.push({
-  nombre: "Sistemas de Información para la Continuidad de Beca de Posgrado",
+  nombre: "Sistema de evaluación para el desempeño docente para aspirantes en el proceso de admisión mediante cursos propedéuticos (SIED-Prop",
   institucion: "Univercidad politecnica de chiapas",
   fechaReporte: "2025-04-29",
   descripcionGeneral: "El Sistema de Continuidad de Beca de Posgrado tiene como objetivo registrar y validar mensualmente la situación académica de los estudiantes becarios del INAOE, cumpliendo con los lineamientos establecidos por la SECIHTI.",
-  avance: 40,
-  flujoImagen: "/public/flujo.webp",
+  avance: 70,
+  flujoImagen: "/public/diagrama.webp",
   estadoGeneral: {
     fase: "Producción",
     version: "2.3",
@@ -44,8 +44,15 @@ window.config.proyectos.push({
       responsable: "Ana",
       fechaInicio: "2025-05-01",
       fechaFin: "2025-05-03",
-      avance: 40
+      avance: 70,
     },
-  
+    {
+      id: 2,
+      nombre: "Implementar backend",
+      responsable: "Luis",
+      fechaInicio: "2025-05-04",
+      fechaFin: "2025-05-10",
+      avance: 70
+    }
   ]
 });
